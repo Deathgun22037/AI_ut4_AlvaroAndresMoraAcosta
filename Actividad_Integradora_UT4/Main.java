@@ -27,5 +27,7 @@ public class Main {
                 backUpContadorTotal = valor;
                 contadorTotal = backUpContadorTotal;
             } while (valor < 100);
+            //Añadimos mejora para que el programa enseñe el resultado final.
+            System.out.println("El resultado final del contador es: "+contadorTotal);
         }
 }
