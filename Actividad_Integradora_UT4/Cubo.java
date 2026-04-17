@@ -10,7 +10,7 @@ import javax.swing.*;
  * dos metodos que muestran un mensaje con el area de la base del cubo y otro con el volumen del cubo.
  */
 
-public class Cubo {
+public class Cubo implements Comparable<Cubo>  { //Tuve que añadir el implements Comparable<Cubo> para llamar el metodo compareTo para que funcionase en el @override
     private float lado;
 
     /**
@@ -98,5 +98,17 @@ public class Cubo {
 
     public void mensajeVolumenCubo() {
         JOptionPane.showMessageDialog(null, "El volumen del cubo es: "+calcularVolumenCubo());
+    }
+
+    // Añado este metodo para poder ordenar los cubos por su lado de mayor a menor, el cual usara la clase GestorCubos.
+    @Override
+    public int compareTo(Cubo otro) {
+        if (this.lado < otro.lado) {
+            return -1;
+        } else if (this.lado > otro.lado) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

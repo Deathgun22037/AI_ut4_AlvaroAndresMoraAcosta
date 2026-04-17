@@ -55,6 +55,5 @@ public class PrincipalCubo {
                 default:
             }
         } while (puerta);
-
     }
 }
