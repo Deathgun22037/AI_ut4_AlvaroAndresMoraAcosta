@@ -6,54 +6,31 @@ import java.util.Scanner;
 
 public class PrincipalCubo {
     public static void main(String[] args) {
-        ArrayList<Cubo> cubos = new ArrayList<>();
-        Scanner tec = new Scanner(System.in);
+        GestorCubos gestorCubos = new GestorCubos();
+        ArrayList<Cubo> cubosIniciales = new ArrayList<Cubo>();
 
-        for (int i = 1; i <= 3; i++) {
-            Cubo cubo = new Cubo();
-            JOptionPane.showMessageDialog(null, "Registro del cubo numero "+i);
-            cubo.solicitarLadoCubo();
-            cubos.add(cubo);
+        Cubo cubo1 = new Cubo(3);
+        Cubo cubo2 = new Cubo(5);
+        Cubo cubo3 = new Cubo(7);
+        cubosIniciales.add(cubo1);
+        cubosIniciales.add(cubo2);
+        cubosIniciales.add(cubo3);
+
+        gestorCubos.inicializarYPoblar(cubosIniciales);
+
+        gestorCubos.ordenarCubosporLadoMayorMenor();
+        for(Cubo cubo : gestorCubos.getListaCubos()) {
+            System.out.println("Lado del cubo: " + cubo.getLado());
         }
-        //Añadimos interfaz de interaccion entre ver los 3 cubos y sus valores y el cubo con mayor volumen.
-        boolean puerta = true;
 
-        do {
-            System.out.println("Por favor seleccione una funcion");
-            System.out.println("1. Ver los 3 cubos registrados y sus valores");
-            System.out.println("2. Ver el cubo con mayor volumen");
-            System.out.println("3. Salir del programa");
-            int opcion = tec.nextInt();
-            switch(opcion) {
-                case 1:
-                    for (int i = 0; i < cubos.size(); i++) {
-                        int numCubo = i+1;
-                        System.out.println("Cubo numero "+numCubo);
-                        System.out.println("Lado: "+cubos.get(i).getLado());
-                        System.out.println("Area de la base: "+cubos.get(i).calcularBaseCubo());
-                        System.out.println("Volumen: "+cubos.get(i).calcularVolumenCubo());
-                        System.out.println();
-                    }
-                    break;
-
-                case 2:
-                    Cubo cuboMayorVolumen = cubos.get(0);
-                    for (Cubo cubo : cubos) {
-                        if (cubo.calcularVolumenCubo() > cuboMayorVolumen.calcularVolumenCubo()) {
-                            cuboMayorVolumen = cubo;
-                        }
-                    }
-
-                    int cuboMayor = cubos.indexOf(cuboMayorVolumen)+1;
-
-                    JOptionPane.showMessageDialog(null, "El cubo con mayor volumen es el cubo numero "+cuboMayor+" con un volumen de "+cuboMayorVolumen.calcularVolumenCubo());
-                    break;
-
-                case 3:
-                    puerta = false;
-                    JOptionPane.showMessageDialog(null, "Saliendo del programa gracias por utilizarlo");
-                default:
-            }
-        } while (puerta);
+        Cubo pequeño = cubosIniciales.get(1);
+        Cubo grande = cubosIniciales.get(2);
+        boolean encaja = gestorCubos.cabeDentro(pequeño, grande);
+        if(encaja) {
+            System.out.println("El cubo pequeño cabe dentro del cubo grande.");
+        } else {
+            System.out.println("El cubo pequeño no cabe dentro del cubo grande.");
+        }
     }
 }
+
