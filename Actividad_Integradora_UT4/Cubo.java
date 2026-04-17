@@ -99,7 +99,9 @@ public class Cubo implements Comparable<Cubo>  { //Tuve que añadir el implement
     public void mensajeVolumenCubo() {
         JOptionPane.showMessageDialog(null, "El volumen del cubo es: "+calcularVolumenCubo());
     }
+
     // Añado este metodo para poder ordenar los cubos por su lado de mayor a menor, el cual usara la clase GestorCubos.
+
     @Override
     public int compareTo(Cubo otro) {
         if (this.lado < otro.lado) {
@@ -111,5 +113,7 @@ public class Cubo implements Comparable<Cubo>  { //Tuve que añadir el implement
         }
     }
 }
+
+
 
 
